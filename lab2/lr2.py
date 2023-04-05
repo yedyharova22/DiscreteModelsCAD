@@ -48,18 +48,6 @@ class Graph:
             elif odd > 2:
                 return 0
 
-    def isValidNextEdge(self, u, v):
-        if len(self.graph[u]) == 1:
-            return True
-        else:
-            visited = [False] * self.V
-            count1 = self.DFSCount(u, visited)
-            self.removeEdge(u, v)
-            visited = [False] * self.V
-            count2 = self.DFSCount(u, visited)
-            self.addEdge(u, v)
-            return False if count1 > count2 else True
-
     def DFSCount(self, v, visited):
         count = 1
         visited[v] = True
@@ -135,7 +123,7 @@ class Graph:
 def get_edges(matrix):
     edges = []
     for i in range(len(matrix)):
-        for j in range(len(matrix[i])):
+        for j in range(i, len(matrix[i])):
             if matrix[i][j] != 0:
                 edges.append((i, j))
     return edges
@@ -153,8 +141,8 @@ def draw_matrix(matrix):
 
 
 if __name__ == '__main__':
-    maxST1 = load_matrix("matrix1.txt")
-    print(maxST1)
+    maxST1 = load_matrix("matrix3.txt")
+    # print(maxST1)
     edges = get_edges(maxST1)
     g = Graph(8)
     for edge in edges:
