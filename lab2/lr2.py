@@ -48,22 +48,6 @@ class Graph:
             elif odd > 2:
                 return 0
 
-    def DFSCount(self, v, visited):
-        count = 1
-        visited[v] = True
-        for i in self.graph[v]:
-            if visited[i] == False and self.visited_edges[(v, i)] == False:
-                self.visited_edges[(v, i)] = True
-                self.visited_edges[(i, v)] = True
-                count += self.DFSCount(i, visited)
-        return count
-
-    def removeEdge(self, u, v):
-        self.graph[u].remove(v)
-        self.graph[v].remove(u)
-        self.visited_edges[(u, v)] = True
-        self.visited_edges[(v, u)] = True
-
     def test(self):
         res = self.isEulerian()
         if res == 0:
